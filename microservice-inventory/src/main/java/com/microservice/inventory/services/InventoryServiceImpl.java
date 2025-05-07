@@ -1,0 +1,30 @@
+package com.microservice.inventory.services;
+
+import com.microservice.inventory.entities.Inventory;
+import com.microservice.inventory.persistence.InventoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class InventoryServiceImpl implements IInventoryService{
+
+    @Autowired
+    private InventoryRepository inventoryRepository;
+
+    @Override
+    public List<Inventory> findAllProducts() {
+        return (List<Inventory>) inventoryRepository.findAll();
+    }
+
+    @Override
+    public Inventory findById(long id) {
+        return inventoryRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void save(Inventory inventory) {
+        inventoryRepository.save(inventory);
+    }
+}
