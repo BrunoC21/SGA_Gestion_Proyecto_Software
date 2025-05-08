@@ -1,11 +1,12 @@
-FROM eclipse-temurin:17-jdk-alpine as builder
+# Etapa 1: Build con Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
-RUN chmod +x mvnw
-RUN ./mvnw clean package -DskipTests
+RUN mvn clean package -pl microservice-config -am -DskipTests
 
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-COPY --from=builder /app/target/*.jar app.jar
+# Etapa 2: Imagen final liviana
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/microservice-config/target/microservice-config-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8888
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
