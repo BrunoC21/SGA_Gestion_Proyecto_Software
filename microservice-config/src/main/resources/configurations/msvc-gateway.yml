@@ -1,6 +1,8 @@
 eureka:
   client:
-    register-with-eureka: false
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://msvc-eureka:8761/eureka/
 
 server:
   port: 8080
@@ -15,6 +17,6 @@ spring:
           enabled: true
       routes:
         - id: inventory
-          uri: http://localhost:8090
+          uri: lb://msvc-inventory
           predicates:
             - Path=/api/inventory/**
