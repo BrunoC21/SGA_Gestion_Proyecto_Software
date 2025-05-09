@@ -19,6 +19,12 @@ public class InventoryServiceImpl implements IInventoryService{
     }
 
     @Override
+    public void deleteById(long id) {
+        inventoryRepository.deleteById(id);
+    }
+
+
+    @Override
     public Inventory findById(long id) {
         return inventoryRepository.findById(id).orElse(null);
     }

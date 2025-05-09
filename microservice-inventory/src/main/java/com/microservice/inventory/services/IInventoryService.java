@@ -11,4 +11,6 @@ public interface IInventoryService {
     Inventory findById(long id);
 
     void save(Inventory inventory);
+
+    void deleteById(long id);
 }
