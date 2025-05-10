@@ -6,11 +6,12 @@ import java.util.List;
 
 public interface IInventoryService {
 
-    List<Inventory> findAllProducts();
+    Inventory save(Inventory inventario);
 
-    Inventory findById(long id);
+    void deleteById(Long id);
 
-    void save(Inventory inventory);
+    Inventory findById(Long id);
 
-    void deleteById(long id);
+    List<Inventory> findAll();
+
 }

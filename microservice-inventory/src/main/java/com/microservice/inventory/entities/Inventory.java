@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+
 
 @Data
 @Entity
@@ -19,8 +21,15 @@ public class Inventory  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name =  "product_name")
-    private String productName;
-    private int quantity;
-    private String description;
+    @ManyToOne
+    private Products product;
+
+    @Column(name = "numero_lote")
+    private String inventoryNumber;
+
+    @Column(name = "fecha_vencimiento")
+    private LocalDate expDate;
+
+    @Column(name = "precio_unitario")
+    private Double unitPrice;
 }

@@ -22,8 +22,8 @@ public class InventoryController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> findAllProducts() {
-        return ResponseEntity.ok(inventoryService.findAllProducts());
+    public ResponseEntity<?> findAll() {
+        return ResponseEntity.ok(inventoryService.findAll());
     }
 
     @GetMapping("/search/{id}")
@@ -50,9 +50,10 @@ public class InventoryController {
         }
 
         // Actualizo solo los atributos que vienen en la request
-        existingInventory.setProductName(inventoryDetails.getProductName());
-        existingInventory.setQuantity(inventoryDetails.getQuantity());
-        existingInventory.setDescription(inventoryDetails.getDescription());
+        existingInventory.setProduct(inventoryDetails.getProduct());
+        existingInventory.setInventoryNumber(inventoryDetails.getInventoryNumber());
+        existingInventory.setExpDate(inventoryDetails.getExpDate());
+        existingInventory.setUnitPrice(inventoryDetails.getUnitPrice());
 
         inventoryService.save(existingInventory);  // save hace UPDATE porque ya tiene id
 
