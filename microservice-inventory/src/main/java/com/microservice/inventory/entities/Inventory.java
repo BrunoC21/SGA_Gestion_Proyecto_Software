@@ -25,11 +25,11 @@ public class Inventory  {
     private Products product;
 
     @Column(name = "numero_lote")
-    private String inventoryNumber;
+    private String inventory_number;
 
     @Column(name = "fecha_vencimiento")
-    private LocalDate expDate;
+    private LocalDate exp_date;
 
     @Column(name = "precio_unitario")
-    private Double unitPrice;
+    private Double unit_price;
 }

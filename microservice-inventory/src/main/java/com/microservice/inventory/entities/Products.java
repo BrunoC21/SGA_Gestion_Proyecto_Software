@@ -19,7 +19,7 @@ public class Products {
     private String description;
     private String type;
 
-    @Column(name = "measure-unit")
-    private String measureUnit;
+    @Column(name = "unidad-medida")
+    private String measure_unit;
 }
 

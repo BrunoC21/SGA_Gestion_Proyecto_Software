@@ -20,3 +20,15 @@ spring:
           uri: lb://msvc-inventory
           predicates:
             - Path=/api/inventory/**
+        - id: products
+          uri: lb://msvc-inventory
+          predicates:
+            - Path=/api/products/**
+        - id: stockware
+          uri: lb://msvc-inventory
+          predicates:
+            - Path=/api/stockware/**
+        - id: warehouse
+          uri: lb://msvc-inventory
+          predicates:
+            - Path=/api/warehouse/**

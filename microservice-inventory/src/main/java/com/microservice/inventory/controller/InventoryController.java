@@ -51,9 +51,9 @@ public class InventoryController {
 
         // Actualizo solo los atributos que vienen en la request
         existingInventory.setProduct(inventoryDetails.getProduct());
-        existingInventory.setInventoryNumber(inventoryDetails.getInventoryNumber());
-        existingInventory.setExpDate(inventoryDetails.getExpDate());
-        existingInventory.setUnitPrice(inventoryDetails.getUnitPrice());
+        existingInventory.setInventory_number(inventoryDetails.getInventory_number());
+        existingInventory.setExp_date(inventoryDetails.getExp_date());
+        existingInventory.setUnit_price(inventoryDetails.getUnit_price());
 
         inventoryService.save(existingInventory);  // save hace UPDATE porque ya tiene id
 
