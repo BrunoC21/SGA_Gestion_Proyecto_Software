@@ -16,11 +16,19 @@ spec:
         - name: wait-for-config
           image: busybox
           command: ['sh', '-c', 'until wget -qO- http://config-server:8888/actuator/health | grep UP; do echo waiting for config-server; sleep 5; done']
+          # Timeout de 30 segundos por ejemplo
+          terminationMessagePolicy: FallbackToLogsOnError
       containers:
         - name: gateway
           image: "{{ .Values.microservices.gateway.image }}"
           ports:
             - containerPort: {{ .Values.microservices.gateway.port }}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{ .Values.microservices.gateway.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 5
 ---
 apiVersion: v1
 kind: Service
