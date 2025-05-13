@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: inventory
-          image: { .Values.microservices.inventory.image }
+          image: "{{ .Values.microservices.inventory.image }}"  # Reemplazamos por la plantilla de Helm
           ports:
-            - containerPort: { .Values.microservices.inventory.port }
+            - containerPort: {{ .Values.microservices.inventory.port }}  # Reemplazamos por la plantilla de Helm
 ---
 apiVersion: v1
 kind: Service
@@ -26,6 +26,6 @@ spec:
   selector:
     app: inventory
   ports:
-    - port: { .Values.microservices.inventory.port }
-      targetPort: { .Values.microservices.inventory.port }
+    - port: {{ .Values.microservices.inventory.port }}  # Reemplazamos por la plantilla de Helm
+      targetPort: {{ .Values.microservices.inventory.port }}
   type: ClusterIP

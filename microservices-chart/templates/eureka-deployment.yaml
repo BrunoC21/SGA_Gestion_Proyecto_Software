@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: eureka
-          image: { .Values.microservices.eureka.image }
+          image: "{{ .Values.microservices.eureka.image }}"  # Reemplazamos por la plantilla de Helm
           ports:
-            - containerPort: { .Values.microservices.eureka.port }
+            - containerPort: {{ .Values.microservices.eureka.port }}  # Reemplazamos por la plantilla de Helm
 ---
 apiVersion: v1
 kind: Service
@@ -26,6 +26,6 @@ spec:
   selector:
     app: eureka
   ports:
-    - port: { .Values.microservices.eureka.port }
-      targetPort: { .Values.microservices.eureka.port }
+    - port: {{ .Values.microservices.eureka.port }}  # Reemplazamos por la plantilla de Helm
+      targetPort: {{ .Values.microservices.eureka.port }}
   type: ClusterIP

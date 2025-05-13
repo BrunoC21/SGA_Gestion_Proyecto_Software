@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: config
-          image: { .Values.microservices.config.image }
+          image: "{{ .Values.microservices.config.image }}"
           ports:
-            - containerPort: { .Values.microservices.config.port }
+            - containerPort: {{ .Values.microservices.config.port }}
 ---
 apiVersion: v1
 kind: Service
@@ -26,6 +26,6 @@ spec:
   selector:
     app: config
   ports:
-    - port: { .Values.microservices.config.port }
-      targetPort: { .Values.microservices.config.port }
+    - port: {{ .Values.microservices.config.port }}
+      targetPort: {{ .Values.microservices.config.port }}
   type: ClusterIP
