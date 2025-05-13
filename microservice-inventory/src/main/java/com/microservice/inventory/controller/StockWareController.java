@@ -49,6 +49,7 @@ public class StockWareController {
 
         existingStockWare.setWarehouse(stockWareDetails.getWarehouse());
         existingStockWare.setLot(stockWareDetails.getLot());
+        existingStockWare.setAmount(stockWareDetails.getAmount());
 
         stockWareService.save(existingStockWare);
 

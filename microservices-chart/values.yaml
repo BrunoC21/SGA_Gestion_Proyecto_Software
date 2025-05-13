@@ -1,0 +1,20 @@
+microservices:
+  config:
+    image: brunocaro/microservice-config
+    port: 8888
+  eureka:
+    image: brunocaro/microservice-eureka
+    port: 8761
+  gateway:
+    image: brunocaro/microservice-gateway
+    port: 8080
+  inventory:
+    image: brunocaro/microservice-inventory
+    port: 8090
+
+postgres:
+  image: postgres:16
+  port: 5432
+  username: postgres
+  password: postgres
+  db: inventorydb

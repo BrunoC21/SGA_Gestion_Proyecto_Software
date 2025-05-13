@@ -15,6 +15,8 @@ public class StockWare {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private int amount;
+
     @ManyToOne
     private Warehouse warehouse;
 

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory
+  template:
+    metadata:
+      labels:
+        app: inventory
+    spec:
+      containers:
+        - name: inventory
+          image: { .Values.microservices.inventory.image }
+          ports:
+            - containerPort: { .Values.microservices.inventory.port }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory
+spec:
+  selector:
+    app: inventory
+  ports:
+    - port: { .Values.microservices.inventory.port }
+      targetPort: { .Values.microservices.inventory.port }
+  type: ClusterIP
