@@ -20,4 +20,4 @@ eureka:
     hostname: msvc-inventory
   client:
     service-url:
-      defaultZone: http://eureka:8761/eureka
+      defaultZone: http://msvc-eureka:8761/eureka
