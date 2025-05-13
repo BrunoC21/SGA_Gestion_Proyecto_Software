@@ -12,11 +12,15 @@ spec:
       labels:
         app: eureka
     spec:
+      initContainers:
+        - name: wait-for-config
+          image: busybox
+          command: ['sh', '-c', 'until wget -qO- http://config-server:8888/actuator/health | grep UP; do echo waiting for config-server; sleep 5; done']
       containers:
         - name: eureka
-          image: "{{ .Values.microservices.eureka.image }}"  # Reemplazamos por la plantilla de Helm
+          image: "{{ .Values.microservices.eureka.image }}"
           ports:
-            - containerPort: {{ .Values.microservices.eureka.port }}  # Reemplazamos por la plantilla de Helm
+            - containerPort: {{ .Values.microservices.eureka.port }}
 ---
 apiVersion: v1
 kind: Service
@@ -26,6 +30,6 @@ spec:
   selector:
     app: eureka
   ports:
-    - port: {{ .Values.microservices.eureka.port }}  # Reemplazamos por la plantilla de Helm
+    - port: {{ .Values.microservices.eureka.port }}
       targetPort: {{ .Values.microservices.eureka.port }}
   type: ClusterIP

@@ -12,11 +12,18 @@ spec:
       labels:
         app: inventory
     spec:
+      initContainers:
+        - name: wait-for-config
+          image: busybox
+          command: ['sh', '-c', 'until wget -qO- http://config-server:8888/actuator/health | grep UP; do echo waiting for config-server; sleep 5; done']
+        - name: wait-for-postgres
+          image: busybox
+          command: ['sh', '-c', 'until nc -z postgres {{ .Values.postgres.port }}; do echo waiting for postgres; sleep 5; done']
       containers:
         - name: inventory
-          image: "{{ .Values.microservices.inventory.image }}"  # Reemplazamos por la plantilla de Helm
+          image: "{{ .Values.microservices.inventory.image }}"
           ports:
-            - containerPort: {{ .Values.microservices.inventory.port }}  # Reemplazamos por la plantilla de Helm
+            - containerPort: {{ .Values.microservices.inventory.port }}
 ---
 apiVersion: v1
 kind: Service
@@ -26,6 +33,6 @@ spec:
   selector:
     app: inventory
   ports:
-    - port: {{ .Values.microservices.inventory.port }}  # Reemplazamos por la plantilla de Helm
+    - port: {{ .Values.microservices.inventory.port }}
       targetPort: {{ .Values.microservices.inventory.port }}
   type: ClusterIP
