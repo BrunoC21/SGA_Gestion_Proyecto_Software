@@ -12,23 +12,11 @@ spec:
       labels:
         app: gateway
     spec:
-      initContainers:
-        - name: wait-for-config
-          image: busybox
-          command: ['sh', '-c', 'until wget -qO- http://config-server:8888/actuator/health | grep UP; do echo waiting for config-server; sleep 5; done']
-          # Timeout de 30 segundos por ejemplo
-          terminationMessagePolicy: FallbackToLogsOnError
       containers:
         - name: gateway
-          image: "{{ .Values.microservices.gateway.image }}"
+          image: "{{ .Values.microservices.gateway.image }}"  # Reemplazamos por la plantilla de Helm
           ports:
-            - containerPort: {{ .Values.microservices.gateway.port }}
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: {{ .Values.microservices.gateway.port }}
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            - containerPort: {{ .Values.microservices.gateway.port }}  # Reemplazamos por la plantilla de Helm
 ---
 apiVersion: v1
 kind: Service
@@ -38,6 +26,6 @@ spec:
   selector:
     app: gateway
   ports:
-    - port: {{ .Values.microservices.gateway.port }}
+    - port: {{ .Values.microservices.gateway.port }}  # Reemplazamos por la plantilla de Helm
       targetPort: {{ .Values.microservices.gateway.port }}
   type: ClusterIP
