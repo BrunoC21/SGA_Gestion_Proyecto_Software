@@ -1,0 +1,5 @@
+apiVersion: v2
+name: microservices-chart
+description: Helm chart for microservices like inventory
+version: 0.1.0
+appVersion: "1.0"

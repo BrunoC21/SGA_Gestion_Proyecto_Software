@@ -1,0 +1,4 @@
+microservices:
+  inventory:
+    image: brunocaro/microservice-inventory
+    port: 8090
