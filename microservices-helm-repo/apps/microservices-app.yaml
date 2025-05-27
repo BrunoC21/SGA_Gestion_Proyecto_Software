@@ -9,8 +9,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/BrunoC21/SGA_Gestion_Proyecto_Software.git
-    targetRevision: HEAD
-    path: charts/microservices-chart
+    targetRevision: prueba
+    path: microservices-helm-repo/charts/microservices-chart
   destination:
     server: https://kubernetes.default.svc
     namespace: default
