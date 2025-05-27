@@ -1,4 +1,4 @@
-apiVersion: argoproj.io/v1alpha1
+  apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app-of-apps
@@ -8,7 +8,7 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://your.repo.url.git
+    repoURL: https://github.com/BrunoC21/SGA_Gestion_Proyecto_Software.git
     path: apps
     targetRevision: HEAD
   project: default

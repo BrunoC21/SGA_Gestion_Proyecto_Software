@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://your.repo.url.git
+    repoURL: https://github.com/BrunoC21/SGA_Gestion_Proyecto_Software.git
     targetRevision: HEAD
     path: charts/infra-chart
   destination:
