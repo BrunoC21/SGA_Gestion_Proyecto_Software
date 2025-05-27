@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/BrunoC21/SGA_Gestion_Proyecto_Software'  # o usa 'https://chartmuseum.local/' si lo tienes en chart repo
-    targetRevision: HEAD
+    targetRevision: prueba
     path: microservices-chart
     helm:
       valueFiles:
