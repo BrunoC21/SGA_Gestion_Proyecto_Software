@@ -1,5 +1,5 @@
 apiVersion: v2
 name: infra-chart
-description: Helm chart for infra services: eureka, gateway, postgres
+description: "Helm chart for infra services: eureka, gateway, postgres"
 version: 0.1.0
 appVersion: "1.0"
