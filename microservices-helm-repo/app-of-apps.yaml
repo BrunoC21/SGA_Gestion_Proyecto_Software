@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/BrunoC21/SGA_Gestion_Proyecto_Software.git
     path: apps
-    targetRevision: HEAD
+    targetRevision: prueba
   project: default
   syncPolicy:
     automated:
