@@ -17,7 +17,7 @@ spring:
 
 eureka:
   instance:
-      hostname: msvc-authentication
+    hostname: msvc-authentication
   client:
-      service-url:
-        defaultZone: http://msvc-eureka:8761/eureka
+    service-url:
+      defaultZone: http://msvc-eureka:8761/eureka
