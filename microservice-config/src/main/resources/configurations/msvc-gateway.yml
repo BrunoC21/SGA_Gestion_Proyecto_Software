@@ -32,3 +32,7 @@ spring:
           uri: lb://msvc-inventory
           predicates:
             - Path=/api/warehouse/**
+        - id: authentication
+          uri: lb://msvc-authentication
+          predicates:
+            - Path=/auth/**
