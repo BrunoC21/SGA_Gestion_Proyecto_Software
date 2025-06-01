@@ -17,18 +17,22 @@ spring:
           enabled: true
       routes:
         - id: inventory
-          uri: lb://msvc-inventory
+          uri: http://localhost:8090
           predicates:
             - Path=/api/inventory/**
         - id: products
-          uri: lb://msvc-inventory
+          uri: http://localhost:8090
           predicates:
             - Path=/api/products/**
         - id: stockware
-          uri: lb://msvc-inventory
+          uri: http://localhost:8090
           predicates:
             - Path=/api/stockware/**
         - id: warehouse
-          uri: lb://msvc-inventory
+          uri: http://localhost:8090
           predicates:
             - Path=/api/warehouse/**
+        - id: authentication
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
