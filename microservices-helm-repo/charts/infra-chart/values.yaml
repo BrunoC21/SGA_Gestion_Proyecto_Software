@@ -12,3 +12,10 @@ postgres:
   username: postgres
   password: postgres
   db: inventorydb
+
+authPostgres:
+  image: postgres:16
+  port: 5432
+  username: postgres
+  password: postgres
+  db: authenticationdb

@@ -1,3 +1,4 @@
+# PVC para inventorydb
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -9,6 +10,19 @@ spec:
     requests:
       storage: 1Gi
 ---
+# PVC para authenticationdb
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: authPostgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# Deployment para inventorydb
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -43,6 +57,42 @@ spec:
           persistentVolumeClaim:
             claimName: postgres-pvc
 ---
+# Deployment para authenticationdb
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authPostgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authPostgres
+  template:
+    metadata:
+      labels:
+        app: authPostgres
+    spec:
+      containers:
+        - name: authPostgres
+          image: {{ .Values.authPostgres.image }}
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.authPostgres.db | quote }}
+            - name: POSTGRES_USER
+              value: {{ .Values.authPostgres.username | quote }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.authPostgres.password | quote }}
+          ports:
+            - containerPort: {{ .Values.authPostgres.port }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: authPostgres-storage
+      volumes:
+        - name: authPostgres-storage
+          persistentVolumeClaim:
+            claimName: authPostgres-pvc
+---
+# Service para inventorydb
 apiVersion: v1
 kind: Service
 metadata:
@@ -53,4 +103,17 @@ spec:
   ports:
     - port: {{ .Values.postgres.port }}
       targetPort: {{ .Values.postgres.port }}
+  type: ClusterIP
+---
+# Service para authenticationdb
+apiVersion: v1
+kind: Service
+metadata:
+  name: authPostgres-db
+spec:
+  selector:
+    app: authPostgres
+  ports:
+    - port: {{ .Values.authPostgres.port }}
+      targetPort: {{ .Values.authPostgres.port }}
   type: ClusterIP

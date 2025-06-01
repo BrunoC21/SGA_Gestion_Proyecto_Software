@@ -2,7 +2,7 @@ server:
   port: 8081
 
 spring:
-  aaplication:
+  aplication:
     name: msvc-authentication
   datasource:
     driver-class-name: org.postgresql.Driver
