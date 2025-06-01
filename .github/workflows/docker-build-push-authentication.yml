@@ -40,7 +40,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./microservice-authentication
+          context: .
           file: ./microservice-authentication/Dockerfile
           platforms: linux/amd64
           push: true
