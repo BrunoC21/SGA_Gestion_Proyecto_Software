@@ -1,5 +1,5 @@
-# .github/workflows/docker-build-push-inventory.yml
-name: Build and Push Docker Image (microservice-inventory)
+# .github/workflows/docker-build-push-authentication.yml
+name: Build and Push Docker Image (microservice-authentication)
 
 on:
   push:
