@@ -15,7 +15,7 @@ postgres:
 
 authPostgres:
   image: postgres:16
-  port: 5432
+  port: 5432   # Puedes usar 5433 para evitar conflicto con el otro postgres
   username: postgres
   password: postgres
   db: authenticationdb

@@ -14,7 +14,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: authPostgres-pvc
+  name: auth-postgres-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -61,19 +61,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authPostgres
+  name: auth-postgres
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: authPostgres
+      app: auth-postgres
   template:
     metadata:
       labels:
-        app: authPostgres
+        app: auth-postgres
     spec:
       containers:
-        - name: authPostgres
+        - name: auth-postgres
           image: {{ .Values.authPostgres.image }}
           env:
             - name: POSTGRES_DB
@@ -86,11 +86,11 @@ spec:
             - containerPort: {{ .Values.authPostgres.port }}
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
-              name: authPostgres-storage
+              name: auth-postgres-storage
       volumes:
-        - name: authPostgres-storage
+        - name: auth-postgres-storage
           persistentVolumeClaim:
-            claimName: authPostgres-pvc
+            claimName: auth-postgres-pvc
 ---
 # Service para inventorydb
 apiVersion: v1
@@ -109,10 +109,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: authPostgres-db
+  name: auth-postgres-db
 spec:
   selector:
-    app: authPostgres
+    app: auth-postgres
   ports:
     - port: {{ .Values.authPostgres.port }}
       targetPort: {{ .Values.authPostgres.port }}
