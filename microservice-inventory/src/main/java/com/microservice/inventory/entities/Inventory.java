@@ -24,6 +24,8 @@ public class Inventory  {
     @ManyToOne
     private Products product;
 
+    private StockWare stockWare;
+
     @Column(name = "numero_lote")
     private String inventory_number;
 
