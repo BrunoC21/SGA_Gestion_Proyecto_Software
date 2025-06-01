@@ -20,4 +20,4 @@ eureka:
       hostname: msvc-authentication
   client:
       service-url:
-      defaultZone: http://msvc-eureka:8761/eureka
+        defaultZone: http://msvc-eureka:8761/eureka
