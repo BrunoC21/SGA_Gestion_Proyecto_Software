@@ -6,7 +6,7 @@ spring:
     name: msvc-authentication
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://auth-postgres-db:5432/authenticationdb
+    url: jdbc:postgresql://localhost:5435/authenticationdb
     username: postgres
     password: postgres
   jpa:
@@ -20,4 +20,4 @@ eureka:
     hostname: msvc-authentication
   client:
     serviceUrl:
-      defaultZone: http://msvc-eureka:8761/eureka
+      defaultZone: http://localhost:8761/eureka
