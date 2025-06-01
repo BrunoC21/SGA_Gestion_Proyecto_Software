@@ -19,5 +19,5 @@ eureka:
   instance:
     hostname: msvc-authentication
   client:
-    service-url:
+    serviceUrl:
       defaultZone: http://msvc-eureka:8761/eureka
