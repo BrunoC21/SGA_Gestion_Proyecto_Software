@@ -6,7 +6,7 @@ spring:
     name: msvc-authentication
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgres-db:5432/authenticationdb
+    url: jdbc:postgresql://auth-postgres-db:5432/authenticationdb
     username: postgres
     password: postgres
   jpa:
