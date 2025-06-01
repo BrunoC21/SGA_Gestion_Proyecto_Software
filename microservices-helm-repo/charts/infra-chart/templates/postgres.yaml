@@ -115,5 +115,5 @@ spec:
     app: auth-postgres
   ports:
     - port: {{ .Values.authPostgres.port }}
-      targetPort: {{ .Values.authPostgres.port }}
+      targetPort: 5432
   type: ClusterIP
