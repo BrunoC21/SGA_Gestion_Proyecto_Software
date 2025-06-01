@@ -20,6 +20,24 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String fullName;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column
+    private String birthDate;
+
+    @Column
+    private String region;
+
+    @Column
+    private String commune;
+
+    @Column
+    private String address;
+
     @Column
     private String role; // e.g., "ROLE_USER", "ROLE_ADMIN"
 }

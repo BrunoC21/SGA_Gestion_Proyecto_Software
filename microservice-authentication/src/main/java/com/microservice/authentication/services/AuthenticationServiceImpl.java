@@ -1,5 +1,6 @@
 package com.microservice.authentication.services;
 
+import com.microservice.authentication.dto.RegisterRequest;
 import com.microservice.authentication.entities.User;
 import com.microservice.authentication.persistence.UserRepository;
 import com.microservice.authentication.security.JwtUtil;
@@ -33,15 +34,26 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     }
 
     @Override
-    public void register(String username, String password) {
-        if (userRepository.findByUsername(username).isPresent()) {
+    public void register(RegisterRequest request) {
+        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             throw new RuntimeException("Username already exists");
         }
 
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(encoder.encode(password));
-        user.setRole("ROLE_USER");
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already exists");
+        }
+
+        User user = User.builder()
+                .username(request.getUsername())
+                .password(encoder.encode(request.getPassword()))
+                .fullName(request.getFullName())
+                .email(request.getEmail())
+                .birthDate(request.getBirthDate())
+                .region(request.getRegion())
+                .commune(request.getCommune())
+                .address(request.getAddress())
+                .role("ROLE_USER")
+                .build();
 
         userRepository.save(user);
     }
