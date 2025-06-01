@@ -10,7 +10,7 @@ import java.util.List;
 public class StockWareServiceImpl implements IStockWareService {
 
     @Autowired
-    private StockWareRepository stockWareRepository;
+    StockWareRepository stockWareRepository;
 
     @Override
     public StockWare save(StockWare stockWare) {

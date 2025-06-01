@@ -11,7 +11,7 @@ import java.util.List;
 public class InventoryServiceImpl implements IInventoryService{
 
     @Autowired
-    private InventoryRepository inventoryRepository;
+    InventoryRepository inventoryRepository;
 
     @Override
     public Inventory save(Inventory inventario) {

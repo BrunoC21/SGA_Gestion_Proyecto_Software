@@ -10,7 +10,7 @@ import java.util.List;
 public class WarehouseServiceImpl implements IWarehouseService {
 
     @Autowired
-    private WarehouseRepository warehouseRepository;
+    WarehouseRepository warehouseRepository;
 
     @Override
     public Warehouse save(Warehouse warehouse) {
