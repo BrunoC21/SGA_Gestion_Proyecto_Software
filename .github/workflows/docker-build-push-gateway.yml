@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'microservice-gateway/**'
+      - 'SpringMicroservices/**'
       - '.github/workflows/docker-build-push-gateway.yml'
     branches:
       - prueba

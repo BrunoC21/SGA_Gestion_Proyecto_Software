@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'microservice-config/**'
+      - 'SpringMicroservices/**'
       - '.github/workflows/docker-build-push-config.yml'
     branches:
       - prueba

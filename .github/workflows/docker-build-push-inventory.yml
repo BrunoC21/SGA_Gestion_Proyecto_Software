@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'microservice-inventory/**'
+      - 'SpringMicroservices/**'
       - '.github/workflows/docker-build-push-inventory.yml'
     branches:
       - prueba

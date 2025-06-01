@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'microservice-authentication/**'
+      - 'SpringMicroservices/**'
       - '.github/workflows/docker-build-push-authentication.yml'
     branches:
       - prueba

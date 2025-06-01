@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - 'microservice-eureka/**'
+      - 'SpringMicroservices/**'
       - '.github/workflows/docker-build-push-eureka.yml'
     branches:
       - prueba
