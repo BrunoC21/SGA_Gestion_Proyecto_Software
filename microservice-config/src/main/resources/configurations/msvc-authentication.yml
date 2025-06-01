@@ -16,8 +16,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 eureka:
-    instance:
-        hostname: msvc-authentication
-    client:
-        service-url:
-        defaultZone: http://msvc-eureka:8761/eureka
+  instance:
+      hostname: msvc-authentication
+  client:
+      service-url:
+      defaultZone: http://msvc-eureka:8761/eureka
