@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductsController {
 
     @Autowired
-    private IProductsService productsService;
+    IProductsService productsService;
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)

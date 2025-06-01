@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class InventoryController {
 
     @Autowired
-    private IInventoryService inventoryService;
+    IInventoryService inventoryService;
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)

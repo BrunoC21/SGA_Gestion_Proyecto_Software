@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class StockWareController {
 
     @Autowired
-    private IStockWareService stockWareService;
+    IStockWareService stockWareService;
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
