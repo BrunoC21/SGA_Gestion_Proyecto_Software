@@ -3,12 +3,14 @@ package com.microservice.authentication.controller;
 import com.microservice.authentication.dto.LoginRequest;
 import com.microservice.authentication.dto.LoginResponse;
 import com.microservice.authentication.dto.RegisterRequest;
+import com.microservice.authentication.dto.UserResponse;
 import com.microservice.authentication.services.IAuthenticationService;
 import com.microservice.authentication.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -56,10 +58,9 @@ public class AuthenticationController {
         return "User data updated";
     }
 
-    @GetMapping("/auth/whoami")
-    public String whoami() {
-        var auth = SecurityContextHolder.getContext().getAuthentication();
-        return "User: " + auth.getName() + ", Roles: " + auth.getAuthorities();
+    @GetMapping("/admin/users")
+    public List<UserResponse> getAllUsers() {
+        return userService.getAllUsers();
     }
 
 }

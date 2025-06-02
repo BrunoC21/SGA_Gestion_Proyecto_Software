@@ -5,6 +5,10 @@ import com.microservice.authentication.entities.User;
 import com.microservice.authentication.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.stream.Collectors;
+import com.microservice.authentication.dto.UserResponse;
+import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
@@ -50,4 +54,22 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+    public List<UserResponse> getAllUsers() {
+        Iterable<User> iterable = userRepository.findAll();
+        return StreamSupport.stream(iterable.spliterator(), false)
+                .map(user -> new UserResponse(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getFullName(),
+                        user.getEmail(),
+                        user.getBirthDate(),
+                        user.getRegion(),
+                        user.getCommune(),
+                        user.getAddress(),
+                        user.getRole()
+                ))
+                .collect(Collectors.toList());
+    }
+
 }
