@@ -21,6 +21,7 @@
     <module>microservice-eureka</module>
     <module>microservice-config</module>
     <module>microservice-inventory</module>
+    <module>microservice-authentication</module>
   </modules>
 
   <properties>

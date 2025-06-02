@@ -14,17 +14,23 @@ public class InventoryServiceImpl implements IInventoryService{
     private InventoryRepository inventoryRepository;
 
     @Override
-    public List<Inventory> findAllProducts() {
-        return (List<Inventory>) inventoryRepository.findAll();
+    public Inventory save(Inventory inventario) {
+        return inventoryRepository.save(inventario);
     }
 
     @Override
-    public Inventory findById(long id) {
+    public void deleteById(Long id) {
+        inventoryRepository.deleteById(id);
+    }
+
+    @Override
+    public Inventory findById(Long id) {
         return inventoryRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void save(Inventory inventory) {
-        inventoryRepository.save(inventory);
+    public List<Inventory> findAll() {
+        return (List<Inventory>) inventoryRepository.findAll();
     }
+
 }

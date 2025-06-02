@@ -1,0 +1,119 @@
+# PVC para inventorydb
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# PVC para authenticationdb
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: auth-postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+# Deployment para inventorydb
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: {{ .Values.postgres.image }}
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.db | quote }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.username | quote }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.password | quote }}
+          ports:
+            - containerPort: {{ .Values.postgres.port }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-storage
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+# Deployment para authenticationdb
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-postgres
+  template:
+    metadata:
+      labels:
+        app: auth-postgres
+    spec:
+      containers:
+        - name: auth-postgres
+          image: {{ .Values.authPostgres.image }}
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.authPostgres.db | quote }}
+            - name: POSTGRES_USER
+              value: {{ .Values.authPostgres.username | quote }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.authPostgres.password | quote }}
+          ports:
+            - containerPort: {{ .Values.authPostgres.port }}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: auth-postgres-storage
+      volumes:
+        - name: auth-postgres-storage
+          persistentVolumeClaim:
+            claimName: auth-postgres-pvc
+---
+# Service para inventorydb
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-db
+spec:
+  selector:
+    app: postgres
+  ports:
+    - port: {{ .Values.postgres.port }}
+      targetPort: {{ .Values.postgres.port }}
+  type: ClusterIP
+---
+# Service para authenticationdb
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-postgres-db
+spec:
+  selector:
+    app: auth-postgres
+  ports:
+    - port: {{ .Values.authPostgres.port }}
+      targetPort: 5432
+  type: ClusterIP

@@ -1,0 +1,21 @@
+microservices:
+  eureka:
+    image: brunocaro/microservice-eureka
+    port: 8761
+  gateway:
+    image: brunocaro/microservice-gateway
+    port: 8080
+
+postgres:
+  image: postgres:16
+  port: 5432
+  username: postgres
+  password: postgres
+  db: inventorydb
+
+authPostgres:
+  image: postgres:16
+  port: 5432   # Puedes usar 5433 para evitar conflicto con el otro postgres
+  username: postgres
+  password: postgres
+  db: authenticationdb
