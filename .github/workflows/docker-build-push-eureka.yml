@@ -9,6 +9,8 @@ on:
       - '.github/workflows/docker-build-push-eureka.yml'
     branches:
       - prueba
+permissions:
+  contents: write
 
 jobs:
   build:

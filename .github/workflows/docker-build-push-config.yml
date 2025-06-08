@@ -8,6 +8,8 @@ on:
       - '.github/workflows/docker-build-push-config.yml'
     branches:
       - prueba
+permissions:
+  contents: write
 
 jobs:
   build:
