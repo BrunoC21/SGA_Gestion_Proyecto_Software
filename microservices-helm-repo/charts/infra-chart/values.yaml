@@ -1,6 +1,6 @@
 microservices:
   eureka:
-    image: brunocaro/microservice-eureka:latest
+    image: brunocaro/microservice-eureka:33f1cc9
     port: 8761
   gateway:
     image: brunocaro/microservice-gateway:a2db49e
