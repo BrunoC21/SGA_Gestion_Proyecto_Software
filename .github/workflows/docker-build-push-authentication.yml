@@ -63,4 +63,4 @@ jobs:
           git add microservices-helm-repo/charts/microservices-chart/values.yaml
           git commit -m "Update authentication image to tag ${{ steps.vars.outputs.tag }}" || echo "No changes to commit"
           git pull --rebase origin prueba
-          git push origin prueba
+          git push --force-with-lease origin prueba
