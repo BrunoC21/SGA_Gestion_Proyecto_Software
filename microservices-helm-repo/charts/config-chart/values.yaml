@@ -1,4 +1,4 @@
 microservices:
   config:
-    image: brunocaro/microservice-config:3187469
+    image: brunocaro/microservice-config:a0e0067
     port: 8888
