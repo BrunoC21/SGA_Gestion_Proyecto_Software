@@ -51,4 +51,5 @@ jobs:
           git config user.email "actions@github.com"
           git add microservices-helm-repo/charts/config-chart/values.yaml
           git commit -m "Update config image to tag ${{ steps.vars.outputs.tag }}" || echo "No changes to commit"
+          git pull --rebase origin prueba
           git push origin prueba
