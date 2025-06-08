@@ -62,5 +62,4 @@ jobs:
           git config user.email "actions@github.com"
           git add microservices-helm-repo/charts/microservices-chart/values.yaml
           git commit -m "Update authentication image to tag ${{ steps.vars.outputs.tag }}" || echo "No changes to commit"
-          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/BrunoC21/SGA_Gestion_Proyecto_Software.git
           git push origin prueba
