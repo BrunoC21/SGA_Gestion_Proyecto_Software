@@ -1,9 +1,9 @@
 microservices:
   eureka:
-    image: brunocaro/microservice-eureka
+    image: brunocaro/microservice-eureka:latest
     port: 8761
   gateway:
-    image: brunocaro/microservice-gateway
+    image: brunocaro/microservice-gateway:latest
     port: 8080
 
 postgres:
