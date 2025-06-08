@@ -1,6 +1,6 @@
 microservices:
   inventory:
-    image: brunocaro/microservice-inventory:latest
+    image: brunocaro/microservice-inventory:33f1cc9
     port: 8090
   authentication:
     image: brunocaro/microservice-authentication:latest
