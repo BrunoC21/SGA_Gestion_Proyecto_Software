@@ -1,4 +1,3 @@
-# .github/workflows/docker-build-push-config.yml
 name: Build and Push Docker Image (microservice-config)
 
 on:
@@ -42,12 +41,13 @@ jobs:
 
       - name: Update values.yaml
         run: |
-          sed -i "s|brunocaro/microservice-config:.*|brunocaro/microservice-config:${{ steps.vars.outputs.tag }}|" 	microservices-helm-repo/charts/config-chart/values.yaml
+          sed -i "s|brunocaro/microservice-config:.*|brunocaro/microservice-config:${{ steps.vars.outputs.tag }}|" microservices-helm-repo/charts/config-chart/values.yaml
 
       - name: Commit and push updated values.yaml
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add microservices-helm-repo/charts/infra-chart/values.yaml
-          git commit -m "Update config image to tag ${{ steps.vars.outputs.tag }}"
-          git push
+          git add microservices-helm-repo/charts/config-chart/values.yaml
+          git commit -m "Update config image to tag ${{ steps.vars.outputs.tag }}" || echo "No changes to commit"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/BrunoC21/SGA_Gestion_Proyecto_Software.git
+          git push origin prueba
