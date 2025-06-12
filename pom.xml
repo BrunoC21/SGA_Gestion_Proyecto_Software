@@ -21,6 +21,7 @@
     <module>microservice-config</module>
     <module>microservice-inventory</module>
     <module>microservice-authentication</module>
+    <module>microservice-benefits</module>
   </modules>
 
   <properties>
