@@ -63,4 +63,14 @@ public class AuthenticationController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/admin/user/{userId}")
+    public UserResponse getUserById(@PathVariable Long userId) {
+        return userService.getUserById(userId);
+    }
+
+    @GetMapping("/admin/user/username/{username}")
+    public UserResponse getUserByUsername(@PathVariable String username) {
+        return userService.getUserByUsername(username);
+    }
+
 }

@@ -72,4 +72,39 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public UserResponse getUserById(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return new UserResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getBirthDate(),
+                user.getRegion(),
+                user.getCommune(),
+                user.getAddress(),
+                user.getRole()
+        );
+    }
+
+    public UserResponse getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return new UserResponse(
+                user.getId(),
+                user.getUsername(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getBirthDate(),
+                user.getRegion(),
+                user.getCommune(),
+                user.getAddress(),
+                user.getRole()
+        );
+    }
+
+
 }
