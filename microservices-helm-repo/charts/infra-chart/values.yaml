@@ -3,7 +3,7 @@ microservices:
     image: brunocaro/microservice-eureka:7f11d28
     port: 8761
   gateway:
-    image: brunocaro/microservice-gateway:3187469
+    image: brunocaro/microservice-gateway:7f11d28
     port: 8080
 
 postgres:
