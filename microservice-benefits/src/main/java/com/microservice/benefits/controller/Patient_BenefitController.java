@@ -24,12 +24,12 @@ public class Patient_BenefitController {
     public ResponseEntity<?> findAll(){ return ResponseEntity.ok(patbenService.findAll());}
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable("id") Long id){
         return ResponseEntity.ok(patbenService.findById(id));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePatben(@PathVariable Long id){
+    public ResponseEntity<?> deletePatben(@PathVariable("id") Long id){
         Patient_Benefit existingPatients = patbenService.findById(id);
         if(existingPatients==null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Relation Patient_Benefit with ID " + id + " not found");

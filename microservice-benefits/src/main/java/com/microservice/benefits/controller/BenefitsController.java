@@ -22,12 +22,12 @@ public class BenefitsController {
     public ResponseEntity<?> findAll(){ return ResponseEntity.ok(benefitsService.findAll());}
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable("id") Long id){
         return ResponseEntity.ok(benefitsService.findById(id));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteBenefits(@PathVariable Long id){
+    public ResponseEntity<?> deleteBenefits(@PathVariable("id") Long id){
         Benefits existingBenefit = benefitsService.findById(id);
         if(existingBenefit==null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benefit with ID " + id + " not found");

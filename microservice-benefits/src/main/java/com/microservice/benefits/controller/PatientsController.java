@@ -23,12 +23,12 @@ public class PatientsController {
     public ResponseEntity<?> findAll(){ return ResponseEntity.ok(patientsService.findAll());}
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id){
+    public ResponseEntity<?> findById(@PathVariable("id") Long id){
         return ResponseEntity.ok(patientsService.findById(id));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletePatients(@PathVariable Long id){
+    public ResponseEntity<?> deletePatients(@PathVariable("id") Long id){
         Patients existingPatients = patientsService.findById(id);
         if(existingPatients==null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benefit with ID " + id + " not found");
@@ -38,7 +38,7 @@ public class PatientsController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updatePatient(@PathVariable Long id, @RequestBody Patients patientdetail){
+    public ResponseEntity<?> updatePatient(@PathVariable("id") Long id, @RequestBody Patients patientdetail){
         Patients existingPatients = patientsService.findById(id);
         if(existingPatients==null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Benefit with ID " + id + " not found");
